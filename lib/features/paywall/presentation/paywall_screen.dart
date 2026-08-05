@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:i_gaming_test_app/features/paywall/domain/subscription_plan.dart';
 import 'package:i_gaming_test_app/features/paywall/presentation/widgets/plan_card.dart';
 import 'package:i_gaming_test_app/uikit/primary_button.dart';
@@ -39,7 +38,7 @@ class PaywallScreen extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Text(
-                'Выбери подписку. Покупка эмулируется — реальный биллинг не подключён.',
+                'Выбери подписку',
                 textAlign: TextAlign.center,
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
@@ -59,7 +58,7 @@ class PaywallScreen extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                'Отмена в любой момент. Это демо-поток.',
+                'Отмена в любой момент.',
                 textAlign: TextAlign.center,
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
