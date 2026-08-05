@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:i_gaming_test_app/uikit/primary_button.dart';
+import 'package:i_gaming_test_app/uikit/uikit.dart';
 
 class OnboardingPageData {
   const OnboardingPageData({
@@ -74,7 +74,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 itemBuilder: (context, index) {
                   final page = _pages[index];
                   return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.xl,
+                    ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -82,29 +84,30 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           width: 120,
                           height: 120,
                           decoration: BoxDecoration(
-                            color: theme.colorScheme.primaryContainer,
-                            borderRadius: BorderRadius.circular(32),
+                            color: AppColors.primaryLight,
+                            borderRadius: BorderRadius.circular(AppRadii.pill),
                           ),
                           child: Icon(
                             page.icon,
                             size: 56,
-                            color: theme.colorScheme.onPrimaryContainer,
+                            color: AppColors.primaryDark,
                           ),
                         ),
-                        const SizedBox(height: 32),
+                        const SizedBox(height: AppSpacing.xxl),
                         Text(
                           page.title,
                           textAlign: TextAlign.center,
                           style: theme.textTheme.headlineMedium?.copyWith(
                             fontWeight: FontWeight.w700,
+                            color: AppColors.textPrimary,
                           ),
                         ),
-                        const SizedBox(height: 12),
+                        const SizedBox(height: AppSpacing.md),
                         Text(
                           page.subtitle,
                           textAlign: TextAlign.center,
                           style: theme.textTheme.bodyLarge?.copyWith(
-                            color: theme.colorScheme.onSurfaceVariant,
+                            color: AppColors.textSecondary,
                             height: 1.4,
                           ),
                         ),
@@ -115,7 +118,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              padding: const EdgeInsets.fromLTRB(
+                AppSpacing.xl,
+                0,
+                AppSpacing.xl,
+                AppSpacing.xl,
+              ),
               child: Column(
                 children: [
                   Row(
@@ -124,20 +132,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       final active = i == _index;
                       return AnimatedContainer(
                         duration: const Duration(milliseconds: 200),
-                        margin: const EdgeInsets.symmetric(horizontal: 4),
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: AppSpacing.xs,
+                        ),
                         width: active ? 22 : 8,
                         height: 8,
                         decoration: BoxDecoration(
                           color: active
-                              ? theme.colorScheme.primary
-                              : theme.colorScheme.outlineVariant,
-                          borderRadius: BorderRadius.circular(8),
+                              ? AppColors.primary
+                              : AppColors.border,
+                          borderRadius: BorderRadius.circular(AppRadii.sm),
                         ),
                       );
                     }),
                   ),
-                  const SizedBox(height: 24),
-                  PrimaryButton(
+                  const SizedBox(height: AppSpacing.xl),
+                  AppButton.primary(
                     label: 'Продолжить',
                     onPressed: _onContinue,
                   ),

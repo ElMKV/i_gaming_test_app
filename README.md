@@ -38,6 +38,11 @@ lib/
     home/presentation/
   config/themes/
   uikit/
+    colors/                 # AppColors
+    tokens/                 # spacing / radii
+    buttons/                # AppButton
+    panels/                 # AppPanel
+    badges/                 # AppBadge
 ```
 
 ## Запуск

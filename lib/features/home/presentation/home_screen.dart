@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:i_gaming_test_app/features/paywall/domain/subscription_plan.dart';
+import 'package:i_gaming_test_app/uikit/uikit.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -37,75 +38,73 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
+        padding: const EdgeInsets.fromLTRB(
+          AppSpacing.lg + 4,
+          AppSpacing.sm,
+          AppSpacing.lg + 4,
+          AppSpacing.xl,
+        ),
         children: [
-          Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  theme.colorScheme.primary,
-                  theme.colorScheme.tertiary,
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-              borderRadius: BorderRadius.circular(20),
-            ),
+          AppPanel(
+            variant: AppPanelVariant.gradient,
+            padding: const EdgeInsets.all(AppSpacing.lg + 4),
+            borderRadius: BorderRadius.circular(AppRadii.xxl),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   'Добро пожаловать',
                   style: theme.textTheme.titleLarge?.copyWith(
-                    color: theme.colorScheme.onPrimary,
+                    color: AppColors.textOnPrimary,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                const SizedBox(height: 6),
+                const SizedBox(height: AppSpacing.sm - 2),
                 Text(
                   'Подписка: $planLabel',
                   style: theme.textTheme.bodyMedium?.copyWith(
-                    color: theme.colorScheme.onPrimary.withValues(alpha: 0.9),
+                    color: AppColors.textOnPrimary.withValues(alpha: 0.9),
                   ),
                 ),
               ],
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: AppSpacing.lg + 4),
           Text(
             'Контент',
             style: theme.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.w700,
+              color: AppColors.textPrimary,
             ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: AppSpacing.md),
           ..._items.map(
-            (item) => Card(
-              elevation: 0,
-              color: theme.colorScheme.surfaceContainerLowest,
-              margin: const EdgeInsets.only(bottom: 10),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-                side: BorderSide(color: theme.colorScheme.outlineVariant),
-              ),
-              child: ListTile(
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 6,
+            (item) => Padding(
+              padding: const EdgeInsets.only(bottom: AppSpacing.sm + 2),
+              child: AppPanel(
+                variant: AppPanelVariant.plain,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.lg,
+                  vertical: AppSpacing.sm,
                 ),
-                leading: CircleAvatar(
-                  backgroundColor: theme.colorScheme.primaryContainer,
-                  child: Icon(
-                    item.$1,
-                    color: theme.colorScheme.onPrimaryContainer,
+                child: ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: CircleAvatar(
+                    backgroundColor: AppColors.primaryLight,
+                    child: Icon(item.$1, color: AppColors.primaryDark),
+                  ),
+                  title: Text(
+                    item.$2,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.textPrimary,
+                    ),
+                  ),
+                  subtitle: Text(
+                    item.$3,
+                    style: const TextStyle(color: AppColors.textSecondary),
                   ),
                 ),
-                title: Text(
-                  item.$2,
-                  style: const TextStyle(fontWeight: FontWeight.w600),
-                ),
-                subtitle: Text(item.$3),
               ),
             ),
           ),
