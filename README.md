@@ -4,11 +4,11 @@
 
 ## Архитектура
 
-Однонаправленный поток через **Cubit** (`AppFlowCubit`):
+Однонаправленный флоу через **Cubit** (`AppFlowCubit`):
 
-1. При старте читаем `SharedPreferences`.
-2. Если подписка есть → сразу **Home**.
-3. Иначе: **Onboarding** → **Paywall** → эмуляция покупки → **Home**.
+1. При старте читаем `SharedPreferences`
+2. Если подписка есть → сразу **Home**
+3. Иначе: **Onboarding** → **Paywall** → эмуляция покупки → **Home**
 
 Слои:
 
@@ -17,8 +17,8 @@
 | `features/` | UI экранов (onboarding, paywall, home) |
 | `blocs/` | Состояние флоу приложения |
 | `core/storage/` | Абстракция + реализация хранения подписки |
-| `config/themes/` | Тема |
-| `uikit/` | Переиспользуемые виджеты |
+| `uikit/` | Цвета, кнопки, панели, бейджи, токены |
+| `config/themes/` | Тема Material на базе UI Kit |
 
 Покупка **эмулируется** (задержка + запись в storage). Реальный IAP не подключён.
 
@@ -33,7 +33,7 @@ lib/
   features/
     onboarding/presentation/
     paywall/
-      domain/               # SubscriptionPlan
+      domain/               # SubscriptionPlan + benefits
       presentation/
     home/presentation/
   config/themes/
@@ -57,7 +57,7 @@ flutter run
 ## Что бы улучшил при большем времени
 
 - Настоящий In-App Purchase (StoreKit / Play Billing) вместо эмуляции
-- Отдельные Cubit для paywall и более строгая навигация (go_router / auto_route)
-- Локализация, тёмная тема, анимации онбординга
+- Отдельные Cubit под экраны + навигация через `go_router` / `auto_route`
+- Локализация, тёмная тема, более богатые анимации онбординга
 - Unit/widget-тесты на `AppFlowCubit` и storage
-- Аналитика событий воронки (onboarding → paywall → purchase)
+- Аналитика воронки (onboarding → paywall → purchase)
