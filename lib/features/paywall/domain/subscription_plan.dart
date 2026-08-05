@@ -16,4 +16,18 @@ enum SubscriptionPlan {
         SubscriptionPlan.monthly => null,
         SubscriptionPlan.yearly => '−50%',
       };
+
+  List<String> get benefits => switch (this) {
+        SubscriptionPlan.monthly => const [
+            'Доступ ко всем live-матчам',
+            'Базовая аналитика и прогнозы',
+            'Отмена в любой момент',
+          ],
+        SubscriptionPlan.yearly => const [
+            'Всё из месячного тарифа',
+            'Расширенная аналитика и тренды',
+            'Приоритетные уведомления',
+            '2 месяца в подарок',
+          ],
+      };
 }
